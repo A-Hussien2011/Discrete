@@ -10,30 +10,48 @@ public class SolverImp implements Solver {
 
 	List gcdEquations = new ArrayList<GcdEquation>();
 	@Override
-	public BigInteger modulus1(Integer a, BigInteger b, BigInteger c) {
-		int f = 1;
-		for(int i = 1; i <= 10; i++){
-			f = f * a;
+	public BigInteger modulus1(BigInteger a, BigInteger b, BigInteger c) {
+		BigInteger f = new BigInteger("1");
+		BigInteger count = new BigInteger("0");
+		while(b.compareTo(count) != 0){
+			f = f.multiply(a);
+			count = count.add(BigInteger.ONE);
 		}
-		return null;
+		return f.mod(c);
 	}
 	
 	@Override
-	public BigInteger modulus2(Integer a, BigInteger b, BigInteger c) {
-		// TODO Auto-generated method stub
-		return null;
+	public BigInteger modulus2(BigInteger a, BigInteger b, BigInteger c) {
+		BigInteger f = new BigInteger("1");
+		BigInteger count = new BigInteger("0");
+		while(b.compareTo(count) != 0){
+			f = f.multiply(a);
+			count = count.add(BigInteger.ONE);
+			f = f.mod(c);
+		}
+		return f;
 	}
 
 
 	@Override
-	public BigInteger modulus3(Integer a, BigInteger b, BigInteger c) {
-		// TODO Auto-generated method stub
-		return null;
+	public BigInteger modulus3(BigInteger a, BigInteger b, BigInteger c) {
+		
+		String multiBinary = b.toString(2);
+		BigInteger f = new BigInteger("1");
+		for(int i = 0; i <= multiBinary.length() - 1; i++){
+			f = f.multiply(f);
+			f = f.mod(c);
+			if(multiBinary.charAt(i) == '1'){
+				f = f.multiply(a);
+				f = f.mod(c);
+			}
+		}
+		return f;
 	}
 
 
 	@Override
-	public BigInteger modulus4(Integer a, BigInteger b, BigInteger c) {
+	public BigInteger modulus4(BigInteger a, BigInteger b, BigInteger c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
