@@ -6,7 +6,13 @@ import java.math.BigInteger;
  */
 public interface Solver {
 	
-	public BigInteger modulus(Integer a, BigInteger b, BigInteger c);
+	public BigInteger modulus1(Integer a, BigInteger b, BigInteger c);
+	
+	public BigInteger modulus2(Integer a, BigInteger b, BigInteger c);
+	
+	public BigInteger modulus3(Integer a, BigInteger b, BigInteger c);
+	
+	public BigInteger modulus4(Integer a, BigInteger b, BigInteger c);
 	
 	public Integer multiplicativeInverse(Integer a, Integer n);
 	

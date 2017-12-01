@@ -10,10 +10,39 @@ public class SolverImp implements Solver {
 
 	List gcdEquations = new ArrayList<GcdEquation>();
 	@Override
-	public BigInteger modulus(Integer a, BigInteger b, BigInteger c) {
+	public BigInteger modulus1(Integer a, BigInteger b, BigInteger c) {
+		int f = 1;
+		for(int i = 1; i <= 10; i++){
+			f = f * a;
+		}
+		return null;
+	}
+	
+	@Override
+	public BigInteger modulus2(Integer a, BigInteger b, BigInteger c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public BigInteger modulus3(Integer a, BigInteger b, BigInteger c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public BigInteger modulus4(Integer a, BigInteger b, BigInteger c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer CRT(Integer m1, Integer m2, Integer m3) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 
 	@Override
 	public Integer multiplicativeInverse(Integer a, Integer n) {
@@ -70,13 +99,6 @@ public class SolverImp implements Solver {
 		return gcdCheck(equationTemp);
 
 
-	}
-
-
-	@Override
-	public Integer CRT(Integer m1, Integer m2, Integer m3) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
