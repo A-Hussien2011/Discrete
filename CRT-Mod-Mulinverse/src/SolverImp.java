@@ -11,17 +11,22 @@ public class SolverImp implements Solver {
 	List gcdEquations = new ArrayList<GcdEquation>();
 	@Override
 	public BigInteger modulus1(BigInteger a, BigInteger b, BigInteger c) {
+		long startTime = System.currentTimeMillis();
 		BigInteger f = new BigInteger("1");
 		BigInteger count = new BigInteger("0");
 		while(b.compareTo(count) != 0){
 			f = f.multiply(a);
 			count = count.add(BigInteger.ONE);
 		}
+		long stopTime = System.currentTimeMillis();
+	     long elapsedTime = stopTime - startTime;
+	     System.out.println("elapsed time :" + elapsedTime);
 		return f.mod(c);
 	}
 	
 	@Override
 	public BigInteger modulus2(BigInteger a, BigInteger b, BigInteger c) {
+		long startTime = System.currentTimeMillis();
 		BigInteger f = new BigInteger("1");
 		BigInteger count = new BigInteger("0");
 		while(b.compareTo(count) != 0){
@@ -29,31 +34,43 @@ public class SolverImp implements Solver {
 			count = count.add(BigInteger.ONE);
 			f = f.mod(c);
 		}
+		long stopTime = System.currentTimeMillis();
+	     long elapsedTime = stopTime - startTime;
+	     System.out.println("elapsed time :" + elapsedTime);
 		return f;
 	}
 
 
 	@Override
 	public BigInteger modulus3(BigInteger a, BigInteger b, BigInteger c) {
-		
-		String multiBinary = b.toString(2);
-		BigInteger f = new BigInteger("1");
-		for(int i = 0; i <= multiBinary.length() - 1; i++){
-			f = f.multiply(f);
-			f = f.mod(c);
-			if(multiBinary.charAt(i) == '1'){
-				f = f.multiply(a);
-				f = f.mod(c);
+		long startTime = System.currentTimeMillis();
+		String binaryRepresent = b.toString(2);
+		BigInteger result = a;
+		for(int i = 1; i < binaryRepresent.length(); i++){
+			result = result.pow(2).mod(c);
+			if(binaryRepresent.charAt(i) == '1'){
+				result = result.multiply(a).mod(c);
 			}
 		}
-		return f;
+		long stopTime = System.currentTimeMillis();
+	     long elapsedTime = stopTime - startTime;
+	     System.out.println("elapsed time :" + elapsedTime);
+		return result;
 	}
 
 
 	@Override
 	public BigInteger modulus4(BigInteger a, BigInteger b, BigInteger c) {
-		// TODO Auto-generated method stub
-		return null;
+		if(b.equals(BigInteger.ZERO)){
+			return BigInteger.ONE;
+		}
+		else if(b.mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO)){
+			BigInteger y = modulus4(a, b.divide(BigInteger.valueOf(2)), c);
+			return y.multiply(y).mod(c);
+		}
+		else{
+			return ( a.mod(c).multiply(modulus4(a,b.subtract(BigInteger.ONE),c)) ).mod(c);
+		}
 	}
 
 	@Override
